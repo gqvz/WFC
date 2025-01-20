@@ -1,2 +1,5 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+﻿
+using WFC;
+
+var window = new WFCWindow(1024, 768);
+window.Run();
