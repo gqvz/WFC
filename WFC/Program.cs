@@ -1,5 +1,5 @@
 ﻿
 using WFC;
 
-var window = new WFCWindow(1024, 768);
+var window = new WFCWindow(1024, 1024);
 window.Run();

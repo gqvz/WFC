@@ -1,9 +1,11 @@
 using System.Runtime.CompilerServices;
-using System.Runtime.Intrinsics;
-using System.Runtime.Intrinsics.X86;
 using OpenTK.Mathematics;
 using OpenTK.Windowing.Common;
+using OpenTK.Windowing.Common.Input;
 using OpenTK.Windowing.Desktop;
+using SixLabors.ImageSharp;
+using SixLabors.ImageSharp.PixelFormats;
+using Image = SixLabors.ImageSharp.Image;
 
 namespace WFC;
 
@@ -290,7 +292,7 @@ public sealed class WFCWindow : PixelWindow.PixelWindow
 		#region should not connect
 		[TileType.Empty] =
 		[
-			TileType.Empty,
+			//TileType.Empty,
 			TileType.Horizontal,
 			TileType.BottomLeftCorner,
 			TileType.BottomRightCorner,
@@ -298,7 +300,7 @@ public sealed class WFCWindow : PixelWindow.PixelWindow
 		],
 		[TileType.Horizontal] =
 		[
-			TileType.Empty,
+			//TileType.Empty,
 			TileType.Horizontal,
 			TileType.BottomLeftCorner,
 			TileType.BottomRightCorner,
@@ -306,7 +308,7 @@ public sealed class WFCWindow : PixelWindow.PixelWindow
 		],
 		[TileType.TopLeftCorner] =
 		[
-			TileType.Empty,
+			//TileType.Empty,
 			TileType.Horizontal,
 			TileType.BottomLeftCorner,
 			TileType.BottomRightCorner,
@@ -314,7 +316,7 @@ public sealed class WFCWindow : PixelWindow.PixelWindow
 		],
 		[TileType.TopRightCorner] =
 		[
-			TileType.Empty,
+			//TileType.Empty,
 			TileType.Horizontal,
 			TileType.BottomLeftCorner,
 			TileType.BottomRightCorner,
@@ -322,7 +324,7 @@ public sealed class WFCWindow : PixelWindow.PixelWindow
 		],
 		[TileType.UpTJoint] =
 		[
-			TileType.Empty,
+			//TileType.Empty,
 			TileType.Horizontal,
 			TileType.BottomLeftCorner,
 			TileType.BottomRightCorner,
@@ -341,8 +343,8 @@ public sealed class WFCWindow : PixelWindow.PixelWindow
 			TileType.BottomLeftCorner,
 			TileType.BottomRightCorner,
 			TileType.DownTJoint,
-			TileType.LeftTJoint,
 			TileType.PlusJoint,
+			TileType.LeftTJoint,
 			TileType.RightTJoint
 		],
 		[TileType.TopRightCorner] =
@@ -351,8 +353,8 @@ public sealed class WFCWindow : PixelWindow.PixelWindow
 			TileType.BottomLeftCorner,
 			TileType.BottomRightCorner,
 			TileType.DownTJoint,
-			TileType.LeftTJoint,
 			TileType.PlusJoint,
+			TileType.LeftTJoint,
 			TileType.RightTJoint
 		],
 		[TileType.TopLeftCorner] =
@@ -361,8 +363,8 @@ public sealed class WFCWindow : PixelWindow.PixelWindow
 			TileType.BottomLeftCorner,
 			TileType.BottomRightCorner,
 			TileType.DownTJoint,
-			TileType.LeftTJoint,
 			TileType.PlusJoint,
+			TileType.LeftTJoint,
 			TileType.RightTJoint
 		],
 
@@ -382,8 +384,8 @@ public sealed class WFCWindow : PixelWindow.PixelWindow
 			TileType.BottomLeftCorner,
 			TileType.BottomRightCorner,
 			TileType.DownTJoint,
-			TileType.LeftTJoint,
 			TileType.PlusJoint,
+			TileType.LeftTJoint,
 			TileType.RightTJoint
 		],
 		[TileType.UpTJoint] =
@@ -392,8 +394,8 @@ public sealed class WFCWindow : PixelWindow.PixelWindow
 			TileType.BottomLeftCorner,
 			TileType.BottomRightCorner,
 			TileType.DownTJoint,
-			TileType.LeftTJoint,
 			TileType.PlusJoint,
+			TileType.LeftTJoint,
 			TileType.RightTJoint
 		],
 		[TileType.PlusJoint] =
@@ -402,8 +404,8 @@ public sealed class WFCWindow : PixelWindow.PixelWindow
 			TileType.BottomLeftCorner,
 			TileType.BottomRightCorner,
 			TileType.DownTJoint,
-			TileType.PlusJoint,
 			TileType.LeftTJoint,
+			TileType.PlusJoint,
 			TileType.RightTJoint
 		],
 
@@ -413,7 +415,7 @@ public sealed class WFCWindow : PixelWindow.PixelWindow
 
 		[TileType.Empty] =
 		[
-			TileType.Empty,
+			//TileType.Empty,
 			TileType.Horizontal,
 			TileType.TopLeftCorner,
 			TileType.TopRightCorner,
@@ -421,7 +423,7 @@ public sealed class WFCWindow : PixelWindow.PixelWindow
 		],
 		[TileType.Horizontal] =
 		[
-			TileType.Empty,
+			//TileType.Empty,
 			TileType.Horizontal,
 			TileType.TopLeftCorner,
 			TileType.TopRightCorner,
@@ -429,7 +431,7 @@ public sealed class WFCWindow : PixelWindow.PixelWindow
 		],
 		[TileType.BottomLeftCorner] =
 		[
-			TileType.Empty,
+			//TileType.Empty,
 			TileType.Horizontal,
 			TileType.TopLeftCorner,
 			TileType.TopRightCorner,
@@ -437,7 +439,7 @@ public sealed class WFCWindow : PixelWindow.PixelWindow
 		],
 		[TileType.BottomRightCorner] =
 		[
-			TileType.Empty,
+			//TileType.Empty,
 			TileType.Horizontal,
 			TileType.TopLeftCorner,
 			TileType.TopRightCorner,
@@ -446,7 +448,7 @@ public sealed class WFCWindow : PixelWindow.PixelWindow
 
 		[TileType.DownTJoint] =
 		[
-			TileType.Empty,
+			//TileType.Empty,
 			TileType.Horizontal,
 			TileType.TopLeftCorner,
 			TileType.TopRightCorner,
@@ -465,9 +467,9 @@ public sealed class WFCWindow : PixelWindow.PixelWindow
 			TileType.Horizontal,
 			TileType.BottomLeftCorner,
 			TileType.TopLeftCorner,
+			TileType.PlusJoint,
 			TileType.UpTJoint,
 			TileType.DownTJoint,
-			TileType.PlusJoint,
 			TileType.LeftTJoint
 		],
 		[TileType.TopRightCorner] =
@@ -475,9 +477,9 @@ public sealed class WFCWindow : PixelWindow.PixelWindow
 			TileType.Horizontal,
 			TileType.BottomLeftCorner,
 			TileType.TopLeftCorner,
+			TileType.PlusJoint,
 			TileType.UpTJoint,
 			TileType.DownTJoint,
-			TileType.PlusJoint,
 			TileType.LeftTJoint
 		],
 		[TileType.BottomRightCorner] =
@@ -485,9 +487,9 @@ public sealed class WFCWindow : PixelWindow.PixelWindow
 			TileType.Horizontal,
 			TileType.BottomLeftCorner,
 			TileType.TopLeftCorner,
+			TileType.PlusJoint,
 			TileType.UpTJoint,
 			TileType.DownTJoint,
-			TileType.PlusJoint,
 			TileType.LeftTJoint
 		],
 		[TileType.UpTJoint] =
@@ -505,8 +507,8 @@ public sealed class WFCWindow : PixelWindow.PixelWindow
 			TileType.Horizontal,
 			TileType.BottomLeftCorner,
 			TileType.TopLeftCorner,
-			TileType.UpTJoint,
 			TileType.PlusJoint,
+			TileType.UpTJoint,
 			TileType.DownTJoint,
 			TileType.LeftTJoint
 		],
@@ -516,8 +518,8 @@ public sealed class WFCWindow : PixelWindow.PixelWindow
 			TileType.BottomLeftCorner,
 			TileType.TopLeftCorner,
 			TileType.UpTJoint,
-			TileType.DownTJoint,
 			TileType.PlusJoint,
+			TileType.DownTJoint,
 			TileType.LeftTJoint
 		],
 		[TileType.PlusJoint] =
@@ -527,6 +529,7 @@ public sealed class WFCWindow : PixelWindow.PixelWindow
 			TileType.TopLeftCorner,
 			TileType.UpTJoint,
 			TileType.DownTJoint,
+			TileType.PlusJoint,
 			TileType.LeftTJoint
 		],
 
@@ -584,18 +587,18 @@ public sealed class WFCWindow : PixelWindow.PixelWindow
 			TileType.TopRightCorner,
 			TileType.UpTJoint,
 			TileType.DownTJoint,
-			TileType.PlusJoint,
-			TileType.RightTJoint
+			TileType.RightTJoint,
+			TileType.PlusJoint
 		],
 		[TileType.TopLeftCorner] =
 		[
 			TileType.Horizontal,
 			TileType.BottomRightCorner,
 			TileType.TopRightCorner,
-			TileType.PlusJoint,
 			TileType.UpTJoint,
 			TileType.DownTJoint,
-			TileType.RightTJoint
+			TileType.RightTJoint,
+			TileType.PlusJoint
 		],
 
 		[TileType.BottomLeftCorner] =
@@ -604,9 +607,9 @@ public sealed class WFCWindow : PixelWindow.PixelWindow
 			TileType.BottomRightCorner,
 			TileType.TopRightCorner,
 			TileType.UpTJoint,
-			TileType.PlusJoint,
 			TileType.DownTJoint,
-			TileType.RightTJoint
+			TileType.RightTJoint,
+			TileType.PlusJoint
 		],
 
 		[TileType.UpTJoint] =
@@ -615,9 +618,9 @@ public sealed class WFCWindow : PixelWindow.PixelWindow
 			TileType.BottomRightCorner,
 			TileType.TopRightCorner,
 			TileType.UpTJoint,
-			TileType.PlusJoint,
 			TileType.DownTJoint,
-			TileType.RightTJoint
+			TileType.RightTJoint,
+			TileType.PlusJoint
 		],
 
 		[TileType.LeftTJoint] =
@@ -626,9 +629,9 @@ public sealed class WFCWindow : PixelWindow.PixelWindow
 			TileType.BottomRightCorner,
 			TileType.TopRightCorner,
 			TileType.UpTJoint,
-			TileType.PlusJoint,
 			TileType.DownTJoint,
-			TileType.RightTJoint
+			TileType.RightTJoint,
+			TileType.PlusJoint
 		],
 
 		[TileType.DownTJoint] =
@@ -638,8 +641,8 @@ public sealed class WFCWindow : PixelWindow.PixelWindow
 			TileType.TopRightCorner,
 			TileType.UpTJoint,
 			TileType.DownTJoint,
-			TileType.PlusJoint,
-			TileType.RightTJoint
+			TileType.RightTJoint,
+			TileType.PlusJoint
 		],
 		[TileType.PlusJoint] =
 		[
@@ -647,9 +650,9 @@ public sealed class WFCWindow : PixelWindow.PixelWindow
 			TileType.BottomRightCorner,
 			TileType.TopRightCorner,
 			TileType.UpTJoint,
-			TileType.PlusJoint,
 			TileType.DownTJoint,
-			TileType.RightTJoint
+			TileType.RightTJoint,
+			TileType.PlusJoint
 		],
 
 		#endregion
@@ -861,7 +864,12 @@ public sealed class WFCWindow : PixelWindow.PixelWindow
 
 		UpdateTexture();
 		if (_done)
+		{
 			IsEventDriven = true;
+			var rgbaData = Unsafe.As<Rgba32[]>(Pixels);
+			var img = Image.LoadPixelData<Rgba32>(rgbaData, _width, _height);
+			img.SaveAsPng("real.png");
+		}
 	}
 
 	private unsafe void FillPixelBlock(byte* pixelPtr, int baseX, int baseY, uint color)
