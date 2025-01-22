@@ -869,6 +869,9 @@ public sealed class WFCWindow : PixelWindow.PixelWindow
 			var rgbaData = Unsafe.As<Rgba32[]>(Pixels);
 			var img = Image.LoadPixelData<Rgba32>(rgbaData, _width, _height);
 			img.SaveAsPng("real.png");
+			Console.WriteLine("Image saved");
+			if (Environment.GetEnvironmentVariable("IMAGE_ONLY") == "true")
+				Close();
 		}
 	}
 
@@ -889,10 +892,10 @@ public sealed class WFCWindow : PixelWindow.PixelWindow
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	private static uint GetColorForTemplateValue(int value) => value switch
 	{
-		-1 => ~0x00FFFFFFU,
-		0 => ~0xFF00FF00U,
-		1 => ~0xFFFFFFFFU,
-		2 => ~0xFF0000FFU,
+		-1 => 0xFF000000U,
+		0 => 0xFFFF00FFU,
+		1 => 0xFF000000U,
+		2 => 0xFFFFFF00U,
 		_ => throw new ArgumentOutOfRangeException()
 	};
 }
