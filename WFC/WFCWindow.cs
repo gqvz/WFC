@@ -874,6 +874,25 @@ public sealed class WFCWindow : PixelWindow.PixelWindow
 				Close();
 		}
 	}
+	
+	protected override void OnMouseWheel(MouseWheelEventArgs e)
+	{
+		var zoomSensitivity = 0.1f;
+
+		var mouse = MouseState.Position;
+		var cursorNdc = new Vector2(
+			mouse.X / ClientSize.X * 2 - 1,
+			1 - mouse.Y / ClientSize.Y * 2
+		);
+
+		Zoom = Math.Max(Zoom + e.OffsetY * zoomSensitivity, 1.0f);
+
+		var screenCenter = Vector2.Zero;
+		var zoomCenter = Vector2.Lerp(cursorNdc, screenCenter, 0.5f);
+
+		ZoomOffset = zoomCenter * (1 - 1 / Zoom);
+		base.OnMouseWheel(e);
+	}
 
 	private unsafe void FillPixelBlock(byte* pixelPtr, int baseX, int baseY, uint color)
 	{
